@@ -1,0 +1,240 @@
+{% extends 'chrisco/layout.html'%}
+{% load static %}
+{%block body%}
+<div class="w-full max-1xl:pl-[25%] max-md:pl-[33%] max-900px:pl-[28%]  pl-[20%] max-sm:pl-0  transform duration-500 mt-16 overflow-x-hidden" id="index-body">
+    <div class="w-full  flex-col  items-center flex ">
+        <div class="w-full h-52 bg-gradient-to-br from-green-500 to-slate-400 flex flex-col p-10 text-gray-100">
+            <div class="w-full flex flex-row">                
+                <svg  version="1.0" xmlns="http://www.w3.org/2000/svg" class="400px:h-[50px] 400px:w-[50px] w-[30px] h-[30px]"  viewBox="0 0 96.000000 96.000000"  preserveAspectRatio="xMidYMid meet">  <g transform="translate(0.000000,96.000000) scale(0.100000,-0.100000)" fill="#f3f4f6" stroke="none"> <path d="M813 791 l-43 -6 -5 -260 c-4 -202 -2 -264 7 -277 17 -20 102 -32 116 -15 6 7 10 96 11 212 0 110 3 230 7 267 6 67 6 68 -20 78 -15 5 -28 9 -29 8 -1 0 -21 -4 -44 -7z m72 -98 c-4 -43 -7 -161 -8 -263 l-2 -185 -40 4 c-22 1 -44 5 -48 8 -4 3 -7 119 -5 259 l3 254 53 0 53 0 -6 -77z"/> <path d="M616 694 c-13 -13 -16 -43 -16 -168 0 -84 -3 -187 -6 -229 -7 -75 -6 -76 19 -88 18 -8 40 -9 69 -3 l43 9 6 230 c3 127 2 238 -3 248 -11 23 -90 24 -112 1z m96 -16 c2 -7 2 -110 0 -230 l-4 -216 -33 -6 c-66 -13 -64 -18 -59 222 3 119 7 223 10 230 5 16 81 16 86 0z"/> <path d="M495 600 c-22 -3 -46 -9 -52 -13 -18 -11 -18 -358 -1 -375 16 -16 110 -16 126 0 13 13 18 321 6 365 -7 25 -25 31 -79 23z m60 -200 l0 -175 -50 0 -50 0 -3 165 c-1 90 0 170 3 178 3 9 20 12 52 10 l48 -3 0 -175z"/> <path d="M275 488 c-2 -7 -5 -70 -8 -141 -3 -94 -1 -130 9 -138 7 -5 36 -9 66 -7 l53 3 8 134 c5 73 6 139 3 147 -7 19 -125 20 -131 2z m113 -135 l-4 -128 -50 0 c-49 0 -49 0 -48 33 0 17 1 75 2 127 l2 95 51 0 51 0 -4 -127z"/> <path d="M127 423 c-4 -3 -7 -55 -7 -115 l0 -108 60 0 60 0 0 38 c0 22 3 73 6 115 l7 77 -60 0 c-33 0 -63 -3 -66 -7z m101 -105 l-3 -93 -42 -3 -43 -3 0 95 0 96 45 0 46 0 -3 -92z"/> </g> </svg> 
+            <span class="mx-2 400px:text-3xl  text-lg  mt-1"> Inventory report </span>
+            
+            </div>
+            
+        </div>
+
+        <div class="w-[95%]  bg-gray-100 z-10 -mt-14 rounded-md flex flex-col md:p-10 p-6 text-gray-600 mb-14 h-fit">
+      <div  class="w-full  flex-col flex">
+        <div  class="w-full flex lg:flex-row flex-col  lg:justify-between justify-center  max-lg:items-center  mt-10">
+       
+        <div class=" w-[50%] max-lg:w-[60%] max-900px:w-[80%]  max-sm:w-[90%]  max-400px:w-full py-10  flex     rounded-md px-5  shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] ">
+
+        
+                <canvas id="salechart" width="100" height="100" class="salechart"></canvas>
+               
+                  
+            </div>
+    
+            <div  class="lg:w-[30%] lg:flex  lg:flex-col  grid max-lg:grid-cols-3  max-900px:grid-cols-2 max-400px:grid-cols-1  max-lg:mt-10  gap-y-6">
+                <div  class="  divs  w-[95%] shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)]  ">
+                    <div  class="w-full flex   flex-row">
+                    <div  class="flex  flex-row px-4  items-end  ">
+                        <div class="h-14   w-1  rounded-md bg-green-600  flex "></div>
+                        <div class="h-10   w-1  mx-1 rounded-md bg-green-600  flex"></div>
+                        <div class="h-6   w-1  rounded-md bg-green-600  flex"></div>
+                        <div class="h-8   w-1 mx-1  rounded-md bg-green-600  flex"></div>
+                        <div class="h-10   w-1  rounded-md bg-green-600  flex"></div>
+                    </div>
+                    <div  class=" flex  justify-end   items-end ">
+Initial Total Inventory
+                    </div>
+                </div>
+                <div  class="flex flex-col ">
+                <div class="w-full flex  justify-end px-8  font-bold  text-2xl text-blue-600  my-4 ">
+{{inventory.total_quantity}}
+                </div>
+            </div>
+                </div>
+
+                <div  class="divs lg:my-10  w-[95%] shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)]  ">
+                    <div  class="w-full flex   flex-row">
+                    <div  class="flex  flex-row px-4  items-end  ">
+                        <div class="h-14   w-1  rounded-md bg-green-600  flex "></div>
+                        <div class="h-10   w-1  mx-1 rounded-md bg-green-600  flex"></div>
+                        <div class="h-6   w-1  rounded-md bg-green-600  flex"></div>
+                        <div class="h-8   w-1 mx-1  rounded-md bg-green-600  flex"></div>
+                        <div class="h-10   w-1  rounded-md bg-green-600  flex"></div>
+                    </div>
+                    <div  class=" flex  justify-end   items-end ">
+Initial Total Price
+                    </div>
+                </div>
+                <div  class="flex flex-col ">
+                <div class="w-full flex  justify-end px-8  font-bold  text-xl text-blue-600  my-4 ">
+                    GH₵{{inventory.total_cost}}
+                </div>
+            </div>
+                </div>
+                <div  class="divs   w-[95%] shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)]  ">
+                    <div  class="w-full flex   flex-row">
+                    <div  class="flex  flex-row px-4  items-end  ">
+                        <div class="h-14   w-1  rounded-md bg-green-600  flex "></div>
+                        <div class="h-10   w-1  mx-1 rounded-md bg-green-600  flex"></div>
+                        <div class="h-6   w-1  rounded-md bg-green-600  flex"></div>
+                        <div class="h-8   w-1 mx-1  rounded-md bg-green-600  flex"></div>
+                        <div class="h-10   w-1  rounded-md bg-green-600  flex"></div>
+                    </div>
+                    <div  class=" flex  justify-end   items-end ">
+Current  Total Quantity
+                    </div>
+                </div>
+                <div  class="flex flex-col ">
+                <div class="w-full flex  justify-end px-8  font-bold  text-xl text-blue-600  my-4 ">
+                    {{inventory.new_total_quantity}} 
+                </div>
+            </div>
+                </div>
+
+
+                <div  class="divs  lg:my-10     w-[95%] shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)]  ">
+                    <div  class="w-full flex   flex-row">
+                    <div  class="flex  flex-row px-4  items-end  ">
+                        <div class="h-14   w-1  rounded-md bg-green-600  flex "></div>
+                        <div class="h-10   w-1  mx-1 rounded-md bg-green-600  flex"></div>
+                        <div class="h-6   w-1  rounded-md bg-green-600  flex"></div>
+                        <div class="h-8   w-1 mx-1  rounded-md bg-green-600  flex"></div>
+                        <div class="h-10   w-1  rounded-md bg-green-600  flex"></div>
+                    </div>
+                    <div  class=" flex  justify-end   items-end ">
+Current  Total Price
+                    </div>
+                </div>
+                <div  class="flex flex-col ">
+                <div class="w-full flex  justify-end px-8  font-bold  text-xl text-blue-600  my-4 ">
+                    {{inventory.new_total_cost}} 
+                </div>
+            </div>
+                </div>
+
+            </div>
+
+            </div>
+
+ 
+  
+
+
+
+
+      </div>
+ 
+        </div>
+      
+        </div>
+
+    </div>
+ <script>
+      
+      var options = {
+        animation: {
+					animateScale: true,
+					animateRotate: true
+				},
+      responsive: true,
+      maintainAspectRatio: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            display:false
+                        },
+                        gridLines: {
+         display: false
+      }
+
+                    }],
+                    
+                },
+                plugins: {
+      
+    },
+    tooltips: {
+        enabled: false
+    },
+    title: {
+    display: true,
+    text: 'Inventory Chart',
+    position: 'top'
+  },
+  legend: {
+					position: 'right',
+        labels:{
+          boxWidth: 10,
+          padding: 12
+        }
+				},
+                tooltips: {
+            callbacks: {
+                label: function(tooltipItems, data) {
+                    return data.labels[tooltipItems.index] + 
+                    " : " + 
+                    data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index] +
+                    ' items';
+                }
+            }
+        },
+        
+           
+       
+  
+        }
+  
+
+
+        const observer=new IntersectionObserver((e)=>{
+e.forEach((e,i)=>{
+    if (e.isIntersecting){
+        ctx=document.getElementById("salechart").getContext("2d");
+        var Inventorychart = new Chart(ctx,{
+        type:'doughnut',
+        data:{
+            labels:[{% for product in  productsInventory%} "{{product.product.name}}",{% endfor%}],
+            datasets:[{
+                label:"Inventory chart",
+                data:[{% for product in  productsInventory%} {{product.new_quantity}},{% endfor%}],
+                backgroundColor:[
+                    'rgba(212, 19, 48,0.7)',
+                    'rgba(19, 212, 112,0.7)',
+                    'rgba(21, 50, 194,0.7)',
+                    'rgba(217, 210, 15,0.7)',
+                    'rgba(219, 137, 13,0.7)',
+                    'rgba(173, 245, 66,0.7)',
+                    'rgba(206, 66, 245,0.7)',
+                    'rgba(44, 3, 74.0.7)',
+                    'rgba(130, 129, 129,0.7)'
+                ],
+                borderColor: [
+                        '#cccc','#cccc'
+                       
+                    ],
+                        borderWidth: [2,2]
+            }],
+            
+
+
+        },
+        options: options,
+    })
+
+
+    }
+
+    
+  
+})
+
+
+
+})
+
+
+const chart=document.querySelectorAll('.salechart');
+chart.forEach((element)=>observer.observe(element));
+
+
+
+
+ </script>
+ <style>
+
+ </style>
+{%endblock%}

@@ -1,0 +1,168 @@
+{% extends 'chrisco/layout.html'%}
+{% load static %}
+{%block body%}
+<div class="w-full max-1xl:pl-[25%] max-md:pl-[33%] max-900px:pl-[28%]  pl-[20%] max-sm:pl-0  transform duration-500 mt-16 overflow-x-hidden" id="index-body">
+    <div class="w-full  flex-col  items-center flex ">
+        <div class="w-full h-52 bg-gradient-to-br from-green-500 to-slate-400 flex flex-col p-10 text-gray-100">
+            <div class="w-full flex flex-row">
+                <svg  version="1.0" xmlns="http://www.w3.org/2000/svg"  class="400px:h-[50px] 400px:w-[50px] w-[30px] h-[30px]" viewBox="0 0 64.000000 64.000000"  preserveAspectRatio="xMidYMid meet">  <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)" fill="#f3f4f6" stroke="none"> <path d="M160 527 l-145 -103 -3 -207 -2 -207 63 0 c35 0 68 5 74 11 15 15 356 16 361 0 2 -6 27 -11 63 -11 l59 0 -2 207 -3 208 -145 102 c-80 56 -152 102 -160 102 -8 0 -80 -46 -160 -102z m306 -28 l144 -100 -2 -182 -3 -182 -35 0 -35 0 -1 150 -2 150 -212 0 -213 0 2 -153 2 -153 -38 3 -38 3 -3 181 -2 182 142 101 c79 55 145 100 147 101 2 0 68 -45 147 -101z m32 -248 c2 -24 1 -50 -3 -59 -5 -13 -8 -12 -26 4 -17 15 -39 18 -146 19 -106 1 -129 -2 -148 -17 -13 -10 -26 -18 -29 -18 -8 0 -8 105 1 114 4 3 84 5 177 4 l171 -3 3 -44z m-268 -81 c0 -11 7 -20 15 -20 9 0 15 9 15 21 0 15 5 20 23 17 20 -3 22 -9 22 -56 0 -30 -5 -58 -12 -63 -6 -6 -33 -9 -60 -7 l-48 3 -3 49 c-4 60 2 76 28 76 13 0 20 -7 20 -20z m150 0 c0 -11 7 -20 15 -20 9 0 15 9 15 21 0 15 5 20 23 17 20 -3 22 -8 22 -63 l0 -60 -49 -3 c-27 -2 -53 1 -59 7 -11 11 -19 100 -10 114 10 16 43 7 43 -13z"/> <path d="M255 430 c-13 -21 11 -31 66 -28 40 2 54 7 54 18 0 19 -109 28 -120 10z"/> </g> </svg> 
+            <span class="mx-2 400px:text-3xl  text-lg  mt-1"> Inventory Detail</span>
+            
+            </div>
+            
+        </div>
+
+        <div class="w-[95%]  bg-gray-100 z-10 -mt-14 rounded-md flex flex-col md:p-10 p-6 text-gray-600 mb-14 h-fit ">
+      <div  class="w-full flex-col ">
+        <div class="flex md:flex-row flex-col w-full">
+            <div class="md:w-1/2 w-full">
+                <span class="font-bold">Date:</span><span  class="ml-2">{{inventory.created}}</span>
+            </div>
+            <div class="md:w-1/2 w-full mt-4 md:my-0">
+                <span class="font-bold">Serial Number:</span><span  class="ml-2">{{inventory.serial_number}}</span>
+            </div>
+
+        </div>
+        <div class="flex md:flex-row flex-col w-full my-4">
+            <div class="md:w-1/2 w-full">
+                <span class="font-bold">Total Cost:</span><span  class="ml-2">GH₵ {{inventory.total_cost}}</span>
+            </div>
+            <div class="md:w-1/2 w-full mt-4 md:my-0">
+                <span class="font-bold">Total Price:</span><span  class="ml-2">{{inventory.total_quantity}}</span>
+            </div>
+
+        </div>
+
+
+        <div class="relative overflow-x-auto my-10">
+
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 rounded-md">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3  ">
+                            Product name
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Price
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Quantity
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                    {% for product in inventory.products.all%}
+                    <tr class="bg-white dark:bg-gray-800 border-b    border-gray-200">
+                        
+                      
+                      <th scope="row" class="px-6 py-4 text-gray-600  ">
+                         
+                                   {{product.product.name}} 
+                      </th>
+                      <td class="px-6 py-4">
+                       GH₵  {{product.total_price}} 
+                      </td>
+                      <td class="px-6 py-4">
+                        {{product.quantity}} 
+                      </td>
+                      
+                    </tr>
+                    {%endfor%}
+               
+                    
+                    
+                </tbody>
+                <tfoot>
+                    <tr class="font-semibold text-gray-900 dark:text-white bg-gray-200">
+                        <th scope="row" class="px-6 py-3 text-base">Total</th>
+                        <td class="px-6 py-3">{{inventory.total_cost}}</td>
+                        <td class="px-6 py-3">{{inventory.total_quantity}}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        
+        
+            
+        </div>
+
+
+        <div class="relative overflow-x-auto my-10">
+
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 rounded-md">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3  ">
+                            Product name
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Price
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Quantity
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                    {% for product in inventory.products.all%}
+                    <tr class="bg-white dark:bg-gray-800 border-b    border-gray-200">
+                        
+                      
+                      <th scope="row" class="px-6 py-4 text-gray-600  ">
+                         
+                                   {{product.product.name}} 
+                      </th>
+                      <td class="px-6 py-4">
+                       GH₵  {{product.new_total_price}} 
+                      </td>
+                      <td class="px-6 py-4">
+                        {{product.new_quantity}} 
+                      </td>
+                      
+                    </tr>
+                    {%endfor%}
+               
+                    
+                    
+                </tbody>
+                <tfoot>
+                    <tr class="font-semibold text-gray-900 dark:text-white bg-gray-200">
+                        <th scope="row" class="px-6 py-3 text-base">Current Total</th>
+                        <td class="px-6 py-3">{{inventory.new_total_cost}}</td>
+                        <td class="px-6 py-3">{{inventory.new_total_quantity}}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        
+        
+            
+        </div>
+
+        <div class="flex flex-row" >
+            <span class="font-bold ">Notes:</span><span class="ml-2">{{inventory.notes}}</span>
+
+        </div>
+        
+        
+
+
+        
+
+ 
+  
+
+
+
+
+      </div>
+ 
+        </div>
+      
+        </div>
+
+    </div>
+ 
+{%endblock%}

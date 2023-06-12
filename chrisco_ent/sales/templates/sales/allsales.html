@@ -1,0 +1,149 @@
+{% extends 'chrisco/layout.html'%}
+{% load static %}
+{%block body%}
+<div class="w-full max-1xl:pl-[25%] max-md:pl-[33%] max-900px:pl-[28%]  pl-[20%] max-sm:pl-0  transform duration-500 mt-16 overflow-x-hidden" id="index-body">
+    <div class="w-full  flex-col  items-center flex ">
+        <div class="w-full h-52 bg-gradient-to-br from-green-500 to-slate-400 flex flex-col p-10 text-gray-100">
+            <div class="w-full flex flex-row">
+              <svg  version="1.0" xmlns="http://www.w3.org/2000/svg"   class="400px:h-[50px] 400px:w-[50px] w-[30px] h-[30px]" viewBox="0 0 96.000000 96.000000"  preserveAspectRatio="xMidYMid meet">  <g transform="translate(0.000000,96.000000) scale(0.100000,-0.100000)" fill="#f3f4fa" stroke="none"> <path d="M166 816 c-45 -27 -75 -76 -76 -125 0 -73 76 -151 149 -151 75 0 151 75 151 149 0 51 -35 108 -80 131 -52 26 -96 25 -144 -4z m124 -61 c0 -10 -10 -15 -30 -15 -20 0 -30 -5 -30 -15 0 -8 8 -15 18 -15 41 0 59 -60 23 -80 -30 -15 -71 -13 -71 5 0 9 9 15 24 15 14 0 28 5 32 11 9 14 -16 30 -38 25 -15 -3 -18 3 -18 33 0 47 4 51 52 51 27 0 38 -4 38 -15z m-116 -73 c8 -14 -12 -55 -23 -47 -17 10 -22 59 -9 89 l12 30 7 -30 c3 -17 9 -36 13 -42z m170 35 c3 -12 3 -33 -1 -46 -5 -21 -7 -20 -19 15 -17 49 -17 54 0 54 8 0 16 -10 20 -23z"/> <path d="M696 798 c-9 -36 -8 -38 29 -38 19 0 35 -4 35 -10 0 -5 -3 -10 -7 -10 -5 0 -62 -40 -128 -89 -118 -87 -120 -88 -134 -67 -8 11 -15 22 -17 24 -1 2 -88 -58 -193 -133 -169 -120 -190 -138 -181 -155 6 -10 14 -21 18 -24 4 -3 82 49 173 114 l164 118 22 -24 21 -23 146 110 c80 60 148 109 150 109 3 0 4 -6 2 -12 -3 -7 -7 -25 -10 -40 -6 -26 -4 -28 27 -28 l34 0 7 68 c4 37 8 76 9 87 2 16 -8 21 -68 31 -94 17 -92 17 -99 -8z"/> <path d="M810 360 l0 -210 30 0 30 0 0 210 0 210 -30 0 -30 0 0 -210z"/> <path d="M690 330 l0 -180 30 0 30 0 0 180 0 180 -30 0 -30 0 0 -180z"/> <path d="M570 300 l0 -150 30 0 30 0 0 150 0 150 -30 0 -30 0 0 -150z"/> <path d="M450 270 l0 -120 30 0 30 0 0 120 0 120 -30 0 -30 0 0 -120z"/> <path d="M330 240 l0 -90 30 0 30 0 0 90 0 90 -30 0 -30 0 0 -90z"/> <path d="M210 210 c0 -60 0 -60 30 -60 30 0 30 0 30 60 0 60 0 60 -30 60 -30 0 -30 0 -30 -60z"/> <path d="M90 180 c0 -27 3 -30 30 -30 27 0 30 3 30 30 0 27 -3 30 -30 30 -27 0 -30 -3 -30 -30z"/> </g> </svg>            <span class="mx-2 400px:text-3xl  text-lg   mt-1">All sales</span>
+            
+            </div>
+            
+        </div>
+
+        <div class="w-[95%] h-screen bg-gray-100 z-10 -mt-20 rounded-md flex flex-col p-10 text-gray-600 mb-14 overflow-x-auto">
+            <table class="products-table text-green-600" id="products-table" >
+                <thead >
+                    <tr class="text-left">
+                      <th>id</th>
+                        <th>Serial Number</th>
+                        <th>customer Name</th>
+                        <th>Total Price(GH₵)</th>
+                     
+                        <th>Paid Amount(GH₵)</th>
+                        <th>Due Amount(GH₵)</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                
+                </thead>
+                <tbody>
+
+                    {% for sale in  sales%}
+                    <tr class="my-4 border-b  border-gray-200">
+                       
+                      <td>{{sale.id}}</td>
+                        <td>{{sale.serial_number}}</td>
+                        <td>{{sale.customer_name}}</td>
+                        <td>{{sale.total_price}}</td>
+                        <td>{{sale.paid_price}}</td>
+                        <td>{{sale.due_price}}</td>
+                        <td>{{sale.created_date}}</td>
+                        <td  class="flex-col flex">
+                            <a class="bg-yellow-500 px-2  text-white rounded-md " href="{% url 'sales:edit-sale' sale.id %}" >edit</a>
+                            <a class="bg-red-600 text-white rounded-md px-2 delete-sale cursor-pointer my-2" data-url="{% url 'sales:delete-sale' sale.id%}"  type="button" >delete</a>
+                            <a  type="button " class="text-white rounded-md px-2 bg-cyan-600"  href="{% url  'sales:sale-details'  sale.id  %}">View</a>
+                        </td>
+                      
+                    </tr>
+                {%endfor%}
+                    </tbody>
+            </table>
+            
+ 
+        </div>
+      
+        </div>
+
+    </div>
+    <script src="{% static 'js/datatable.js' %}"></script>
+    {% for message in messages %}
+    {% if message.tags == 'success'  %}
+      <!-- sweetalert js -->
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        var m = "{{ message }}";
+        Swal.fire({
+          icon: 'success',
+          text: m,
+          confirmButtonColor: '#26A69A',
+          showConfirmButton:false,
+          allowEscapeKey: false,
+          background: '#727272',
+          color:"white",
+          timer:1500,
+          showClass: {
+            popup: 'my-icon'                     // disable popup animation css
+          },
+         
+        });
+      </script>
+
+    {% endif %}
+
+    {% if message.tags == 'error'  %}
+    <!-- sweetalert js -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      var m = "{{ message }}";
+      Swal.fire({
+        icon: 'error',
+        text: m,
+        confirmButtonColor: '#26A69A',
+        showConfirmButton:false,
+        allowEscapeKey: false,
+        background: '#727272',
+        color:"white",
+        timer:1500,
+        showClass: {
+          popup: 'my-icon'                     // disable popup animation css
+        },
+       
+      });
+    </script>
+
+  {% endif %}
+  {% endfor %}
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    let deleteitem=document.querySelectorAll('.delete-sale')
+    console.log(deleteitem)
+    for (var i=0; i<deleteitem.length; i++){
+       
+       
+    deleteitem[i].addEventListener('click',(e)=>{
+        Swal.fire({
+       icon: 'warning',
+       text: "Are you sure?",
+       title:"delete",
+       showConfirmButton:true,
+       showCancelButton:true,
+       confirmButtonColor: '#4ade80',
+       confirmButtonText:"Yes",
+       color:"white",
+       background: 'rgba(0, 0, 0, 0.7)',
+       allowEscapeKey: false,
+
+      
+     }).then((result) => {
+       /* Read more about isConfirmed, isDenied below */
+       if (result.isConfirmed) {
+          
+           log=e.target.getAttribute("data-url")
+           window.location.href=log
+
+       } else if (result.isDenied) {
+        
+       }
+     })
+
+
+    })
+       
+    
+    }
+    
+
+  </script>
+
+{%endblock%}

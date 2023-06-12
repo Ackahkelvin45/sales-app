@@ -1,0 +1,84 @@
+
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load tailwind_tags %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+{% tailwind_css %}
+<body  class="w-full h-screen  bg-gray-white flex justify-center items-center">
+    <div  class="w-[70%] h-[90%]   rounded-md flex flex-row border-[1px]  border-green-200">
+        <div class="w-[50%] h-full bg-green-400  flex  items-center  justify-center">
+<img  src="{% static 'img/logo.png'%}"/>
+        </div>
+        <form  class="w-1/2 h-full bg-gray-50 flex flex-col   text-gray-600"  method="post" action="{%  url 'auth:login-process'%}">
+            {% csrf_token %} 
+            <div class="h-[15%]  bg-gray-100 border-b  border-gray-400 shadow-[0_3px_10px_rgb(0,0,0,0.2)] ">
+            <div class="px-4 text-xl my-4  w-64 h-64" >Login  </div>
+            
+        </div>
+          
+            <div class="w-full flex flex-col justify-center h-[80%] px-4  bg-white">
+            <div class="flex flex-col">
+                <label class="my-2 ">Username</label>
+
+                <input type="text" placeholder="Enter Your Username..." class="border-gray-400 rounded  border focus:outline-none focus:ring-0 focus:border-green-400" name="username" required />
+            </div>
+
+            <div class="flex flex-col mt-7">
+                <label class="my-2 ">Password</label>
+
+                <input type="password" placeholder="Enter Your Password..." class="border-gray-400 rounded  border focus:outline-none focus:ring-0 focus:border-green-400" name="password"  required/>
+            </div>
+            <div class="flex mt-4">
+                <button class="group relative h-12 w-[30%] overflow-hidden rounded bg-green-400 text-lg shadow hover:border hover:border-green-400">
+                    <div class="absolute inset-0 w-0 bg-white transition-all duration-[500ms] ease-out group-hover:w-full"></div>
+                    <span class="relative text-white group-hover:text-gray-600">Login </span>
+                </button>
+
+            </div>
+            <div class="my-2">
+            <a class="cursor-pointer hover:underline text-blue-400 duration-300">forgot password?</a>
+            </div>
+
+        </div>
+        <div class="h-[15%]  bg-gray-100 border-t  border-gray-400 shadow-[0_3px_10px_rgb(0,0,0,0.2)] ">
+            
+            
+        </div>
+        </form>
+    </div>
+
+
+    
+</body>
+{% for message in messages %}
+{% if messages  %}
+  <!-- sweetalert js -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    var m = "{{ message }}";
+    Swal.fire({
+      icon: 'error',
+      text: m,
+      confirmButtonColor: '#26A69A',
+      showConfirmButton:false,
+      allowEscapeKey: false,
+      background: '#727272',
+      color:"white",
+      timer:1500,
+      showClass: {
+        popup: 'my-icon'                     // disable popup animation css
+      },
+     
+    });
+  </script>
+
+{% endif %}
+{% endfor %}
+</html>

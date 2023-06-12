@@ -1,0 +1,82 @@
+{% extends 'chrisco/layout.html'%}
+{% load static %}
+{%block body%}
+<div class="w-full max-1xl:pl-[25%] max-md:pl-[33%] max-900px:pl-[28%]  pl-[20%] max-sm:pl-0  transform duration-500 mt-16 overflow-x-hidden" id="index-body">
+    <div class="w-full  flex-col  items-center flex ">
+        <div class="w-full h-52 bg-gradient-to-br from-green-500 to-slate-400 flex flex-col p-10 text-gray-100">
+            <div class="w-full flex flex-row">
+                <svg  version="1.0" xmlns="http://www.w3.org/2000/svg"   class="400px:h-[50px] 400px:w-[50px] w-[30px] h-[30px]"  viewBox="0 0 100.000000 100.000000"  preserveAspectRatio="xMidYMid meet">  <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#f3f4f6" stroke="none"> <path d="M52 908 c-8 -8 -12 -45 -12 -100 0 -81 2 -88 20 -88 20 0 20 -7 20 -308 0 -226 3 -311 12 -320 17 -17 799 -17 816 0 9 9 12 94 12 320 0 301 0 308 20 308 18 0 20 7 20 88 0 55 -4 92 -12 100 -17 17 -879 17 -896 0z m348 -88 l0 -60 -160 0 -160 0 0 60 0 60 160 0 160 0 0 -60z m160 -90 l0 -150 -60 0 -60 0 0 150 0 150 60 0 60 0 0 -150z m360 90 l0 -60 -160 0 -160 0 0 60 0 60 160 0 160 0 0 -60z m-520 -190 l0 -90 100 0 100 0 0 90 0 90 140 0 140 0 0 -300 0 -300 -380 0 -380 0 0 300 0 300 140 0 140 0 0 -90z"/> </g> </svg> 
+            <span class="mx-2 400px:text-3xl  text-lg   mt-1">
+              {% if edit%}
+              Edit Products
+              {%else%}Add Products
+              {%endif%}
+              </span>
+            
+            </div>
+            
+        </div>
+
+        <div class="w-[95%]  bg-gray-100 z-10 -mt-20 rounded-md flex flex-col p-10 text-gray-600 mb-14">
+          {% if edit %}
+          <form class="w-full flex flex-col" method="post" action="{% url 'products:edit-product-process' product.id%}">
+          {%else%}
+          <form class="w-full flex flex-col" method="post" action="{% url 'products:add-product-process'%}">
+          {%endif%}
+
+                <div class="flex flex-row w-full max-900px:flex-col">
+                    <div class="flex flex-col w-full">
+                        <span class="my-1">Product Name</span>
+                        {% csrf_token%}
+             {{ProductForm.name}}
+                    </div>
+
+                    <div class="flex flex-col w-full">
+                        <span class="my-1">Price</span>
+{{PriceForm.price}}
+                    </div>
+                </div>
+                <div class="w-full flex flex-col my-10">
+                    <span class="my-1">Notes</span>
+{{ProductForm.notes}}
+
+                </div>
+                <div class="w-full h-[1px] bg-gray-300 drop-shadow shadow-gray-400  "></div>
+                <div class="w-full my-4">
+                    <button class="text-gray-100 w-[12%] bg-green-600 text-xl py-3 px-2 rounded-md max-900px:w-[16%] max-sm:w-[28%] max-300px:w-[35%]" type="submit"> save</button> 
+
+                </div>
+
+            </form>
+ 
+        </div>
+      
+        </div>
+
+    </div>
+</div>
+{% for message in messages %}
+    {% if messages  %}
+      <!-- sweetalert js -->
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        var m = "{{ message }}";
+        Swal.fire({
+          icon: 'error',
+          text: m,
+          confirmButtonColor: '#26A69A',
+          showConfirmButton:false,
+          allowEscapeKey: false,
+          background: '#727272',
+          color:"white",
+          timer:1500,
+          showClass: {
+            popup: 'my-icon'                     // disable popup animation css
+          },
+         
+        });
+      </script>
+
+    {% endif %}
+  {% endfor %}
+{%endblock%}

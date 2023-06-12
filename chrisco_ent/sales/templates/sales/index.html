@@ -1,0 +1,348 @@
+{%extends 'chrisco/layout.html' %}
+{% load static %}
+
+{%block body%}
+
+<div class="w-full max-1xl:pl-[25%] max-md:pl-[33%] max-900px:pl-[28%]  pl-[20%] max-sm:pl-0 text-gray-100 transform duration-500 mt-16 overflow-x-hidden " id="index-body">
+    <div class="w-full  flex-col  items-center flex ">
+        <div class="w-full h-52 bg-gradient-to-br from-green-500 to-slate-400 flex flex-col p-10">
+            
+            <div class="w-full flex flex-row">
+                <svg  version="1.0" xmlns="http://www.w3.org/2000/svg"  width="50px" height="50px" viewBox="0 0 100.000000 100.000000"  preserveAspectRatio="xMidYMid meet">  <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#f3f4f6" stroke="none"> <path d="M413 743 c-4 -10 -18 -76 -33 -147 l-26 -131 -19 54 c-11 30 -25 56 -32 58 -7 3 -21 -14 -33 -36 -18 -36 -25 -41 -55 -41 -20 0 -44 6 -55 12 -26 17 -55 0 -55 -32 0 -32 29 -49 55 -32 11 6 40 12 65 12 38 0 46 4 59 28 11 20 16 23 19 12 54 -162 66 -160 101 16 13 65 26 112 29 104 2 -8 17 -85 31 -170 15 -85 31 -159 37 -165 15 -15 30 10 69 119 19 53 37 96 40 96 3 0 14 -26 25 -57 11 -31 25 -58 32 -60 6 -3 24 14 39 36 24 38 30 41 70 41 25 0 53 -6 64 -12 26 -17 55 0 55 32 0 32 -29 49 -55 32 -11 -6 -44 -12 -74 -12 -47 0 -57 -4 -73 -26 l-19 -26 -25 64 c-14 35 -31 63 -39 63 -12 0 -58 -99 -85 -180 -4 -12 -20 49 -40 159 -19 98 -36 185 -39 192 -7 19 -25 17 -33 -3z"/> </g> </svg> 
+            <span class="mx-2 text-3xl mt-1">Dashboard
+              </span>
+            
+            </div>
+            <div><span class="text-[18px]"> Overview of your sales and activity</span></div>
+        </div>
+
+        <div class="w-[95%]  bg-gray-100 z-10 -mt-14 rounded-md flex  flex-col lg:flex-row  px-10 py-5 justify-around">
+            <div class="h-fit  flex flex-col justify-center">
+                <div>
+            <div class="text-green-600 text-xl flex flex-col">
+                Welcome to your dashboard
+            </div>
+<div class="text-gray-600 ">
+    This is your dashboard! It is very easy to track your sales, debts, products and  invoices.
+    
+  
+</div>
+</div>
+</div>
+<div class="max-lg:w-[95%] justify-center items-center flex ">
+    
+    <img src="{% static 'img/welcome1.png' %}" class="w-52 h-52"/>
+
+</div>
+        </div>
+        <div class="w-full justify-center items-center flex ">
+        <div class="w-[95%] grid 900px:grid-cols-3  sm:grid-cols-2 grid-cols-1  my-10 gap-y-7 ">
+            <div class="justify-center flex items-center">
+<div class="w-48 h-44 bg-red-600 rounded-md  flex flex-col ">
+
+    <div class="p-5 flex flex-col h-[70%] d text-gray-200">
+    <span class="text-xl">Iventory</span>
+    <span class="text-xl">{{inventory}}</span>
+</div>
+<div class="w-full h-[1px] bg-gray-400"></div>
+<div class="flex w-full flex-row " >
+<a class="p-3 w-full cursor-pointer" href="{% url 'inventory:add-inventory'%}">
+    add inventory
+
+</a>
+<div class="flex flex-col transform duration-300 py-5 h-full px-2 " >
+    <span class="w-3 h-[1px] border border-gray-100 rounded-md rotate-45 z-10 "></span>
+    <span class="w-3 h-[1px] border border-gray-100 rounded-md -rotate-45 translate-y-[5px]"></span>
+  </div>
+</div>
+
+</div>
+</div>
+<div class="justify-center flex items-center">
+
+<div class="w-48 h-44 bg-green-600 rounded-md  flex flex-col ">
+
+    <div class="p-5 flex flex-col h-[70%] d text-gray-200">
+    <span class="text-xl">Product</span>
+    <span class="text-xl">{{products}}</span>
+
+</div>
+<div class="w-full h-[1px] bg-gray-400"></div>
+<div  class="flex w-full flex-row ">
+    <a class="p-3 w-full cursor-pointer"  href="{% url 'products:add-products'%}">
+        add product
+    
+    </a>
+    <div class="flex flex-col transform duration-300 py-5 h-full px-2 " >
+        <span class="w-3 h-[1px] border border-gray-100 rounded-md rotate-45 z-10 "></span>
+        <span class="w-3 h-[1px] border border-gray-100 rounded-md -rotate-45 translate-y-[5px]"></span>
+      </div>
+    </div>
+
+
+</div>
+</div>
+<div class="justify-center flex items-center ">
+<div class="w-48 h-44 bg-yellow-600 rounded-md  flex flex-col ">
+
+    <div class="p-5 flex flex-col h-[70%] d text-gray-200">
+    <span class="text-xl">Sales</span>
+    <span class="text-xl">0</span>
+</div>
+<div class="w-full h-[1px] bg-gray-400"></div>
+<div class="flex w-full flex-row " >
+    <a class="p-3 w-full cursor-pointer" href="{% url 'sales:add-sales'%}">
+        add sales
+       
+    </a>
+    <div class="flex flex-col transform duration-300 py-5 h-full px-2 " >
+        <span class="w-3 h-[1px] border border-gray-100 rounded-md rotate-45 z-10 "></span>
+        <span class="w-3 h-[1px] border border-gray-100 rounded-md -rotate-45 translate-y-[5px]"></span>
+      </div>
+    </div>
+
+
+</div>
+</div>
+
+            </div>
+        </div>
+        <div class="w-[95%] justify-between  flex px-10 mt-20 py-20 md:flex-row flex-col">
+
+<div class=" md:w-[47%] py-10 w-full  flex flex-col   rounded-md px-5  shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] ">
+    <div class="w-full flex justify-end items-end"><button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 flex flex-row group/item">View More <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1 group-hover:scale-x-110  group-hover/item:translate-x-2 duration-500    " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button></div>
+
+        <canvas id="canvas1" width="100" height="100" class="chart"></canvas>
+          
+    </div>
+    
+<div class="md:w-[47%] w-full py-10  px-5 flex  flex-col shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)]  rounded-md my-14  md:my-0">
+    <div class="w-full flex justify-end items-end mb-4"><button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 flex flex-row group/item">View More <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1 group-hover:scale-x-110  group-hover/item:translate-x-2 duration-500    " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button></div>
+    <canvas id="canvas2" width="100" height="100" class="chart2"></canvas>
+   
+  
+    
+</div>
+</div>
+
+
+
+        </div>
+     
+
+    </div>
+</div>
+{% for message in messages %}
+{% if message.tags == 'success'  %}
+  <!-- sweetalert js -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    var m = "{{ message }}";
+    Swal.fire({
+      icon: 'success',
+      text: m,
+      confirmButtonColor: '#26A69A',
+      showConfirmButton:false,
+      allowEscapeKey: false,
+      background: '#727272',
+      color:"white",
+      timer:1500,
+      showClass: {
+        popup: 'my-icon'                     // disable popup animation css
+      },
+     
+    });
+  </script>
+
+{% endif %}
+
+{% if message.tags == 'error'  %}
+<!-- sweetalert js -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  var m = "{{ message }}";
+  Swal.fire({
+    icon: 'error',
+    text: m,
+    confirmButtonColor: '#26A69A',
+    showConfirmButton:false,
+    allowEscapeKey: false,
+    background: '#727272',
+    color:"white",
+    timer:1500,
+    showClass: {
+      popup: 'my-icon'                     // disable popup animation css
+    },
+   
+  });
+</script>
+
+{% endif %}
+{% endfor %}
+<script>
+  
+    var options = {
+        animation: {
+					animateScale: true,
+					animateRotate: true
+				},
+      responsive: true,
+      maintainAspectRatio: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            display:false
+                        },
+                        gridLines: {
+         display: false
+      }
+
+                    }],
+                    
+                },
+                plugins: {
+      
+    },
+    tooltips: {
+        enabled: false
+    },
+    title: {
+    display: true,
+    text: 'Inventory Chart',
+    position: 'top'
+  },
+  legend: {
+					position: 'right',
+        labels:{
+          boxWidth: 10,
+          padding: 12
+        }
+				},
+                tooltips: {
+            callbacks: {
+                label: function(tooltipItems, data) {
+                    return data.labels[tooltipItems.index] + 
+                    " : " + 
+                    data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index] +
+                    ' items';
+                }
+            }
+        },
+        
+           
+       
+  
+        }
+  
+    
+  
+
+
+    
+
+    const observer2=new IntersectionObserver((e)=>{
+e.forEach((e,i)=>{
+    if (e.isIntersecting){
+        ctx=document.getElementById("canvas2").getContext("2d");
+        var saleschart = new Chart(ctx,{
+           
+         type: 'line',
+         data: {
+            labels: [{%for salez in salesdailydata %}
+    "{{salez}}",
+    {%endfor%}],
+            datasets: [{
+               label: "Daily Sales Chart",
+               data: [{%for salez in salesdailydata %}
+    {{salez.total_price}},
+    {%endfor%}],
+               backgroundColor: ['yellow', 'aqua', 'pink', 'lightgreen', 'lightblue', 'gold'],
+               borderColor: ['#4bf2df',],
+               borderWidth: [2],
+               pointRadius: 5,
+               fill:"false",
+            }],
+         },
+         options: {
+            scales: {
+    yAxes: [{
+      scaleLabel: {
+        display: true,
+        labelString: 'Price'
+      }
+    }]
+  }     
+
+        
+         },
+      
+    })
+
+
+
+    }
+})
+    })  
+   
+
+
+
+
+
+
+
+    const observer=new IntersectionObserver((e)=>{
+e.forEach((e,i)=>{
+    if (e.isIntersecting){
+        ctx=document.getElementById("canvas1").getContext("2d");
+        var Inventorychart = new Chart(ctx,{
+        type:'doughnut',
+        data:{
+            labels:[{% for product in  productsInventory%} "{{product.product.name}}",{% endfor%}],
+            datasets:[{
+                label:"Inventory chart",
+                data:[{% for product in  productsInventory%} {{product.new_quantity}},{% endfor%}],
+                backgroundColor:[
+                    'rgba(212, 19, 48,0.7)',
+                    'rgba(19, 212, 112,0.7)',
+                    'rgba(21, 50, 194,0.7)',
+                    'rgba(217, 210, 15,0.7)',
+                    'rgba(219, 137, 13,0.7)',
+                    'rgba(173, 245, 66,0.7)',
+                    'rgba(206, 66, 245,0.7)',
+                    'rgba(44, 3, 74.0.7)',
+                    'rgba(130, 129, 129,0.7)'
+                ],
+                borderColor: [
+                        '#cccc','#cccc'
+                       
+                    ],
+                        borderWidth: [2,2]
+            }],
+            
+
+
+        },
+        options: options,
+    })
+
+
+    }
+
+    
+  
+})
+
+
+
+})
+
+const charts=document.querySelectorAll('.chart');
+const charts2=document.querySelectorAll('.chart2');
+charts.forEach((element)=>observer.observe(element));
+
+charts2.forEach((element)=>observer2.observe(element));
+
+</script>
+{%endblock%}

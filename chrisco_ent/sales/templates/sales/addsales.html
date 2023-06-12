@@ -1,0 +1,212 @@
+{% extends 'chrisco/layout.html'%}
+{% load static %}
+{%block body%}
+<div class="w-full max-1xl:pl-[25%] max-md:pl-[33%] max-900px:pl-[28%]  pl-[20%] max-sm:pl-0  transform duration-500 mt-16 overflow-x-hidden " id="index-body">
+    <div class="w-full  flex-col  items-center flex ">
+        <div class="w-full h-52 bg-gradient-to-br from-green-500 to-slate-400 flex flex-col p-10 text-gray-100">
+            <div class="w-full flex flex-row">
+                <svg  version="1.0" xmlns="http://www.w3.org/2000/svg"   class="400px:h-[50px] 400px:w-[50px] w-[30px] h-[30px]" viewBox="0 0 96.000000 96.000000"  preserveAspectRatio="xMidYMid meet">  <g transform="translate(0.000000,96.000000) scale(0.100000,-0.100000)" fill="#f3f4fa" stroke="none"> <path d="M166 816 c-45 -27 -75 -76 -76 -125 0 -73 76 -151 149 -151 75 0 151 75 151 149 0 51 -35 108 -80 131 -52 26 -96 25 -144 -4z m124 -61 c0 -10 -10 -15 -30 -15 -20 0 -30 -5 -30 -15 0 -8 8 -15 18 -15 41 0 59 -60 23 -80 -30 -15 -71 -13 -71 5 0 9 9 15 24 15 14 0 28 5 32 11 9 14 -16 30 -38 25 -15 -3 -18 3 -18 33 0 47 4 51 52 51 27 0 38 -4 38 -15z m-116 -73 c8 -14 -12 -55 -23 -47 -17 10 -22 59 -9 89 l12 30 7 -30 c3 -17 9 -36 13 -42z m170 35 c3 -12 3 -33 -1 -46 -5 -21 -7 -20 -19 15 -17 49 -17 54 0 54 8 0 16 -10 20 -23z"/> <path d="M696 798 c-9 -36 -8 -38 29 -38 19 0 35 -4 35 -10 0 -5 -3 -10 -7 -10 -5 0 -62 -40 -128 -89 -118 -87 -120 -88 -134 -67 -8 11 -15 22 -17 24 -1 2 -88 -58 -193 -133 -169 -120 -190 -138 -181 -155 6 -10 14 -21 18 -24 4 -3 82 49 173 114 l164 118 22 -24 21 -23 146 110 c80 60 148 109 150 109 3 0 4 -6 2 -12 -3 -7 -7 -25 -10 -40 -6 -26 -4 -28 27 -28 l34 0 7 68 c4 37 8 76 9 87 2 16 -8 21 -68 31 -94 17 -92 17 -99 -8z"/> <path d="M810 360 l0 -210 30 0 30 0 0 210 0 210 -30 0 -30 0 0 -210z"/> <path d="M690 330 l0 -180 30 0 30 0 0 180 0 180 -30 0 -30 0 0 -180z"/> <path d="M570 300 l0 -150 30 0 30 0 0 150 0 150 -30 0 -30 0 0 -150z"/> <path d="M450 270 l0 -120 30 0 30 0 0 120 0 120 -30 0 -30 0 0 -120z"/> <path d="M330 240 l0 -90 30 0 30 0 0 90 0 90 -30 0 -30 0 0 -90z"/> <path d="M210 210 c0 -60 0 -60 30 -60 30 0 30 0 30 60 0 60 0 60 -30 60 -30 0 -30 0 -30 -60z"/> <path d="M90 180 c0 -27 3 -30 30 -30 27 0 30 3 30 30 0 27 -3 30 -30 30 -27 0 -30 -3 -30 -30z"/> </g> </svg> 
+            <span class=" 400px:text-3xl  text-lg  mx-2  mt-1">{% if edit %}Edit Sales{%else%}Add Sales{%endif%}</span>
+            
+            </div>
+            
+        </div>
+
+        <div class="w-[95%]  bg-gray-100 z-10 -mt-14 rounded-md flex flex-col p-10 text-gray-600 mb-14">
+            {% if edit%}
+            <form method="post" action="{% url 'sales:edit-sale-process' sale.id %}" class="w-full flex flex-col">
+                {%else%}
+                <form method="post" action="{% url 'sales:add-sales-process' %}" class="w-full flex flex-col">
+                {%endif%}
+                {% csrf_token%}
+                <div class="relative overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 rounded-md">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3  ">
+                                    Product name
+                                </th>
+                                <th scope="col" class="px-6 py-3 ">
+                                    Quantity
+                                </th>
+                               
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for product in products%}
+                            <tr class="bg-white dark:bg-gray-800 row-item">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white  ">
+                                    <select class="search  w-[200px]  bg-gray-100 rounded-md  border-gray-400 focus:outline-none focus:ring-0 focus:border-gray-400 search product"  name="{{product.name}}" >
+                                        
+                                   
+                                        {% for productv in products %}
+                                        {% if productv.id == product.id %}
+                                        <option value="{{ productv.id }}" data-price="{{ productv.price.price }}" selected>{{ productv.name }}</option>
+                                    {% else %}
+                                        <option value="{{ productv.id }}" data-price="{{ productv.price.price }}" disabled>{{ productv.name }}</option>
+                                    {% endif %}
+                                        {%endfor%}           
+                                             </select>
+                                </th>
+                                <td class="px-6 py-4 ">
+                                    <input type="number" class=" rounded-md  border-gray-400 focus:outline-none focus:ring-0 focus:border-gray-400 quantity " name="quantity{{product.name}}" value="0" />
+                                </td>
+                              
+                            </tr>
+                            {%endfor%}
+                           
+                            
+                           
+                        </tbody>
+                        
+                    </table>
+                
+                
+                    
+                </div>
+                <div class="flex flex-row w-full max-900px:flex-col my-4">
+                    <div class="flex flex-col w-full">
+                        <span class="my-1"> Name of customer</span>
+{{salesform.customer_name}}
+                    </div>
+                    <div class="flex flex-col w-full">
+                        <span class="my-1"> Total  Price</span>
+                        {% if edit %}<span class="text-green-500 text-xl" id="total-price" >{{sale.total_price}} </span> {%else%}
+<span class="text-green-500 text-xl" id="total-price" >0 </span>
+{%endif%}
+<input type="hidden" name="total_price" id="total-price-input" value="0"/>
+
+
+                    </div>
+                </div>
+                <div class="flex flex-row w-full max-900px:flex-col my-4">
+                    
+                    <div class="flex flex-col w-full">
+                        <span class="my-1">Paid price </span>
+       {{salesform.paid_price}}
+
+                    </div>
+
+                    <div class="flex flex-col w-full">
+                        <span class="my-1">Due amount </span>
+                        {% if edit %}
+<span class="text-red-500 text-xl"  id="due_amount">{{sale.due_price}} </span>
+{%else%}<span class="text-red-500 text-xl"  id="due_amount">0 </span>{%endif%}
+<input type="hidden" name="due_amount" id="due_amount_input" value="0"/>
+                    </div>
+                </div>
+                <div class="flex flex-row w-full max-900px:flex-col my-4">
+                    
+                   
+                    <div class="flex flex-col w-full">
+                      
+                    </div>
+
+                   
+                </div>
+                <div class="w-full flex flex-col my-10">
+                    <span class="my-1">Notes</span>
+
+                    {{salesform.notes}}
+
+                    </textarea>
+
+                </div>
+                <div class="w-full h-[1px] bg-gray-300 drop-shadow shadow-gray-400  "></div>
+                <div class="w-full my-4">
+                    <button class="text-gray-100 w-[12%] bg-green-600 text-xl py-3 px-2 rounded-md max-900px:w-[16%] max-sm:w-[28%] max-300px:w-[35%]"> save</button> 
+
+                </div>
+
+            </form>
+ 
+        </div>
+      
+        </div>
+
+    </div>
+</div>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('.search').select2();
+});
+    </script>
+    <style>
+        .select2-selection__rendered {
+    line-height: 40px !important;
+}
+.select2-container .select2-selection--single {
+    height: 40px !important;
+}
+.select2-selection__arrow {
+    height: 40px !important;
+}
+    </style>
+    {% for message in messages %}
+    {% if messages  %}
+      <!-- sweetalert js -->
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        var m = "{{ message }}";
+        Swal.fire({
+          icon: 'error',
+          text: m,
+          confirmButtonColor: '#26A69A',
+          showConfirmButton:false,
+          allowEscapeKey: false,
+          background: '#727272',
+          color:"white",
+          timer:1500,
+          showClass: {
+            popup: 'my-icon'                     // disable popup animation css
+          },
+         
+        });
+      </script>
+   
+    
+    {% endif %}
+    {% endfor %}
+    <script>
+
+
+$('select').on('load', function() {
+    var selectedValue = $(this).val();
+      // Disable the selected option in other select dropdowns
+      $('select').not(this).find('option[value="' + selectedValue + '"]').prop('disabled', true);
+      $('select').not(this).find('option[value="' + selectedValue + '"]').prop('select', false);
+  
+      // Enable previously selected option in other select dropdowns
+      $('select').not(this).find('option[value="' + $(this).data('previous') + '"]').prop('disabled',false);
+      $('select').not(this).find('option[value="' + $(this).data('previous') + '"]').prop('select', false);
+  
+      // Store the selected value as previously selected value
+      $(this).data('previous', selectedValue);
+      console.log(selectedValue);
+})
+     
+        $('select').on('change', function() {
+          // Get the current selected value
+          var selectedValue = $(this).val();
+      
+          // Disable the selected option in other select dropdowns
+          $('select').not(this).find('option[value="' + selectedValue + '"]').prop('disabled', true);
+          $('select').not(this).find('option[value="' + selectedValue + '"]').prop('select', false);
+      
+          // Enable previously selected option in other select dropdowns
+          $('select').not(this).find('option[value="' + $(this).data('previous') + '"]').prop('disabled',false);
+          $('select').not(this).find('option[value="' + $(this).data('previous') + '"]').prop('select', false);
+      
+          // Store the selected value as previously selected value
+          $(this).data('previous', selectedValue);
+          console.log(selectedValue);
+        });
+        
+      
+            </script>
+
+{%endblock%}

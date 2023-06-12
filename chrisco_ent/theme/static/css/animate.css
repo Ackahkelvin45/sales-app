@@ -1,0 +1,15 @@
+.divs{
+    opacity: 0;
+    transition: all 0.8s;
+    transform: translateY(100%);
+    filter: blur(5px);
+}
+
+
+
+.animate{
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+

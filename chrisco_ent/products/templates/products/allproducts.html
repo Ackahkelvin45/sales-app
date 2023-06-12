@@ -1,0 +1,145 @@
+{% extends 'chrisco/layout.html'%}
+{% load static %}
+{%block body%}
+<div class="w-full max-1xl:pl-[25%] max-md:pl-[33%] max-900px:pl-[28%]  pl-[20%] max-sm:pl-0  transform duration-500 mt-16 overflow-x-hidden" id="index-body">
+    <div class="w-full  flex-col  items-center flex ">
+        <div class="w-full h-52 bg-gradient-to-br from-green-500 to-slate-400 flex flex-col p-10 text-gray-100">
+            <div class="w-full flex flex-row">
+                <svg  version="1.0" xmlns="http://www.w3.org/2000/svg"   class="400px:h-[50px] 400px:w-[50px] w-[30px] h-[30px]"  viewBox="0 0 100.000000 100.000000"  preserveAspectRatio="xMidYMid meet">  <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#f3f4f6" stroke="none"> <path d="M52 908 c-8 -8 -12 -45 -12 -100 0 -81 2 -88 20 -88 20 0 20 -7 20 -308 0 -226 3 -311 12 -320 17 -17 799 -17 816 0 9 9 12 94 12 320 0 301 0 308 20 308 18 0 20 7 20 88 0 55 -4 92 -12 100 -17 17 -879 17 -896 0z m348 -88 l0 -60 -160 0 -160 0 0 60 0 60 160 0 160 0 0 -60z m160 -90 l0 -150 -60 0 -60 0 0 150 0 150 60 0 60 0 0 -150z m360 90 l0 -60 -160 0 -160 0 0 60 0 60 160 0 160 0 0 -60z m-520 -190 l0 -90 100 0 100 0 0 90 0 90 140 0 140 0 0 -300 0 -300 -380 0 -380 0 0 300 0 300 140 0 140 0 0 -90z"/> </g> </svg> 
+            <span class="mx-2 400px:text-3xl  text-lg   mt-1">All Products</span>
+            
+            </div>
+            
+        </div>
+
+        <div class="w-[95%] h-screen bg-gray-100 z-10 -mt-20 rounded-md flex flex-col p-10 text-gray-600 mb-14 overflow-x-auto">
+            <table class="products-table text-green-600" id="products-table" >
+                <thead >
+                    <tr class="text-left">
+                      <th>Product Id  </th>
+                        <th>Product Name</th>
+                        <th>Price(GH₵)</th>
+                        <th>Serial Number</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                
+                </thead>
+                <tbody>
+
+                    {% for product in  products%}
+                    <tr>
+                       
+                      <td>{{product.id}}</td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.price.price}}</td>
+                        <td>{{product.serial_number}}</td>
+                        <td>{{product.created}}</td>
+                        <td>
+                            <a class="bg-yellow-500 px-2  text-white rounded-md " href="{% url 'products:edit-product' product.id %}" >edit</a>
+                            <button class="bg-red-600 text-white rounded-md px-2 delete "   type="button" id="" data-url="{% url 'products:delete-product' product.id%}">delete</button>
+                            <a href="{% url 'products:product-detail' product.id%}" type="button " class="text-white rounded-md px-2 bg-cyan-600">View</a>
+                        </td>
+                      
+                    </tr>
+                {%endfor%}
+                    </tbody>
+            </table>
+            
+ 
+        </div>
+      
+        </div>
+
+    </div>
+    <script src="{% static 'js/datatable.js' %}"></script>
+    {% for message in messages %}
+    {% if message.tags == 'success'  %}
+      <!-- sweetalert js -->
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        var m = "{{ message }}";
+        Swal.fire({
+          icon: 'success',
+          text: m,
+          confirmButtonColor: '#26A69A',
+          showConfirmButton:false,
+          allowEscapeKey: false,
+          background: '#727272',
+          color:"white",
+          timer:1500,
+          showClass: {
+            popup: 'my-icon'                     // disable popup animation css
+          },
+         
+        });
+      </script>
+
+    {% endif %}
+
+    {% if message.tags == 'error'  %}
+    <!-- sweetalert js -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      var m = "{{ message }}";
+      Swal.fire({
+        icon: 'error',
+        text: m,
+        confirmButtonColor: '#26A69A',
+        showConfirmButton:false,
+        allowEscapeKey: false,
+        background: '#727272',
+        color:"white",
+        timer:1500,
+        showClass: {
+          popup: 'my-icon'                     // disable popup animation css
+        },
+       
+      });
+    </script>
+
+  {% endif %}
+  {% endfor %}
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    let deleteitem=document.querySelectorAll('.delete')
+    console.log(deleteitem)
+    for (var i=0; i<deleteitem.length; i++){
+       
+       
+    deleteitem[i].addEventListener('click',(e)=>{
+        Swal.fire({
+       icon: 'warning',
+       text: "Are you sure?",
+       title:"delete",
+       showConfirmButton:true,
+       showCancelButton:true,
+       confirmButtonColor: '#4ade80',
+       confirmButtonText:"Yes",
+       color:"white",
+       background: 'rgba(0, 0, 0, 0.7)',
+       allowEscapeKey: false,
+
+      
+     }).then((result) => {
+       /* Read more about isConfirmed, isDenied below */
+       if (result.isConfirmed) {
+          
+           log=e.target.getAttribute("data-url")
+
+           window.location.href=log
+       } else if (result.isDenied) {
+        
+       }
+     })
+
+
+    })
+       
+    
+    }
+    
+
+  </script>
+
+{%endblock%}
