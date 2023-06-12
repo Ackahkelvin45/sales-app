@@ -29,6 +29,7 @@
  <form method="post" action="{% url 'inventory:add-inventory-process'%}"> 
  {%endif%}
        
+ {%csrf_token%}
 <div class="relative overflow-x-auto">
 
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 rounded-md">
@@ -46,9 +47,10 @@
         <tbody>
            
             {% for product in products%}
+
             <tr class="bg-white dark:bg-gray-800">
                 
-                    {%csrf_token%}
+                
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white md:w-[80%]  ">
                     <select class="search  md:w-[80%] w-[200px]  bg-gray-100 rounded-md  border-gray-400 focus:outline-none focus:ring-0 focus:border-gray-400 " name="{{product.name}}">
                         {% for productv in products%}

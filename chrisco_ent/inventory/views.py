@@ -60,6 +60,8 @@ def addInventoryprocess(request):
                 return redirect(reverse('inventory:all-inventory')) 
             messages.error(request,"Enter valid data")
             return redirect(reverse('inventory:add-inventory'))
+        messages.error(request,"Error ,Try Again ")
+        return redirect(reverse('inventory:add-inventory'))
      except :
          messages.error(request,"Error ,Try Again ")
          return redirect(reverse('inventory:add-inventory'))
